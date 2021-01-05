@@ -1,0 +1,991 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{a23ea33d-4156-4a26-aa91-ba2544ac55a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{9b97bdf8-517c-4c17-9328-8473660d4b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{6f56a328-8268-45df-a632-452bff24f1cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{59ab4388-52c0-4b28-963f-452dad9cec24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Primitives">
+      <UniqueIdentifier>{ad9da540-70a1-4fae-8088-55701e16c35d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio">
+      <UniqueIdentifier>{e95f3df0-22d7-41b6-8816-e8111b6f7d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{c2a9e019-1277-4a0a-bddd-07c88586c54b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Basic Datatypes">
+      <UniqueIdentifier>{172dd4a8-4a12-43c8-ae0e-39f2834cb1d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\RNG &amp; Noise">
+      <UniqueIdentifier>{3fbc4248-dff3-4d36-a6aa-c8ccf9017eb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{f29748e3-1432-455f-a59d-88acc662bc57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Devconsole">
+      <UniqueIdentifier>{cf0c3c51-1c20-4171-b436-272996546e5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities">
+      <UniqueIdentifier>{a87666d8-eec9-472b-a6bf-fe45b704d8b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities\File">
+      <UniqueIdentifier>{782fd0d8-0aa8-4710-b3e5-35110803ad15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities\String">
+      <UniqueIdentifier>{e63432ee-17fd-4044-bf76-4782b942a917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utilities\XML">
+      <UniqueIdentifier>{c9d1a282-294a-4809-8b66-da177c16295a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Debug">
+      <UniqueIdentifier>{22b8fa54-f986-48e8-b877-66bd94785c23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Pipeline">
+      <UniqueIdentifier>{1d60c64d-647d-4c50-a40b-b50639df74f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Pipeline\Buffers">
+      <UniqueIdentifier>{a7ac4d5c-3218-4045-894d-2451b0e083f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer\Pipeline\Shaders">
+      <UniqueIdentifier>{bd527724-b331-42fa-8bca-7a74f56c86de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Experimental">
+      <UniqueIdentifier>{a29428e4-41a5-489e-8888-b412c27b8578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Vertex">
+      <UniqueIdentifier>{ff942c79-2e5d-4c35-80f4-0867d2c9f9fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experimental">
+      <UniqueIdentifier>{96226bbe-43f0-4dfe-a8b5-33e2cbcc4dcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Experimental\Raytracer">
+      <UniqueIdentifier>{1a2ad2de-ea8f-45b3-a378-22cccb7a4d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleSystem">
+      <UniqueIdentifier>{b7628568-2541-462c-97d0-1aee10d04125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Memory">
+      <UniqueIdentifier>{75f8c939-47db-4589-9410-630b828b69f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleSystem\ParticleSystem3D">
+      <UniqueIdentifier>{f06e9628-f9f5-46a8-8d1b-8ea4ce483d13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ParticleSystem\ParticleSystem2D">
+      <UniqueIdentifier>{5a102151-97cc-4513-809e-bd70651eb10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGUI">
+      <UniqueIdentifier>{94eb5f0a-8b23-4d5c-bc5b-92f00549b1a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\FMOD">
+      <UniqueIdentifier>{729d6a47-6c20-4bcb-bc2e-c3df844e2b7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\MikkT">
+      <UniqueIdentifier>{cfd0cd5c-8ece-46aa-8fe4-61818ec4174d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\STB">
+      <UniqueIdentifier>{fb9a82d1-c2a9-4423-bbd6-6538938b66f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\TinyXML">
+      <UniqueIdentifier>{853d47ad-18ec-4c50-87aa-d8b80a926982}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\TinyOBJ">
+      <UniqueIdentifier>{67ba1243-3b80-445c-8757-6dffef2edcf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGUI\RenderingAPI">
+      <UniqueIdentifier>{8c0bb47f-c014-470a-9c21-898f25fc3a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGUI\Platform">
+      <UniqueIdentifier>{2fcf3263-ab55-4407-b3ab-c1829b87f7e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DebugUI">
+      <UniqueIdentifier>{30a1de48-70c3-4ee5-9475-027bf4fbac2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Networking">
+      <UniqueIdentifier>{3274900d-59ac-4d8b-98a9-f907c71dcab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGUI\FileDialogBox">
+      <UniqueIdentifier>{c7094d33-6ba5-4104-83fe-ce613f3331fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Profilling">
+      <UniqueIdentifier>{7e1f1a60-8513-4e24-b63a-66769efc4676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructures">
+      <UniqueIdentifier>{1e5ba3b1-c41f-4bcd-a9d4-090c55f857c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DataStructures\ThreadSafe">
+      <UniqueIdentifier>{cbb66828-4243-4358-b248-72f7fca08066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\ImGUI\Plot">
+      <UniqueIdentifier>{a11a00e2-e778-4a82-8e83-80c098ef9117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Platform">
+      <UniqueIdentifier>{0be3e79f-9125-4a7a-b052-d9f48a7a32d1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\Rgba8.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Camera.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RenderContext.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\KeyButtonState.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\XboxController.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputSystem.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\AnalogJoystick.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\MathUtils.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\AABB2.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Disc2D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Image.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioSystem.cpp">
+      <Filter>Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SpriteSheet.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\SimpleTriangleFont.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SpriteDefinition.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix4x4.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\BitmapFont.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SpriteAnimation.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\NamedStrings.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\EngineCommon.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\EventSystem.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\OBB2.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SpriteAnimSet.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Tags.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Capsule2D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\LineSegment2D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\FloatRange.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntRange.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\IntVec2.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec2.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec3.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vec4.cpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\RandomNumberGenerator.cpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\RawNoise.cpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\SmoothNoise.cpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Collider2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\DiscCollider2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Physics2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Rigidbody2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DevConsole.cpp">
+      <Filter>Core\Devconsole</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Polygon2D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PolygonCollider2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Collision2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Manifold2D.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsMaterial.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Window.cpp">
+      <Filter>Physics\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\TextureView.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Shader.cpp">
+      <Filter>Renderer\Pipeline\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\RenderBuffer.cpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\VertexBuffer.cpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\FileUtils.cpp">
+      <Filter>Core\Utilities\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\StringUtils.cpp">
+      <Filter>Core\Utilities\String</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\XmlUtils.cpp">
+      <Filter>Core\Utilities\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ErrorWarningAssert.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\SwapChain.cpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Sampler.cpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DirectoryWatcher.cpp">
+      <Filter>Core\Experimental</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\MatrixUtils.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\GPUMesh.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\IndexBuffer.cpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\AABB3.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\D3D11Common.cpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Clock.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Time.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Timer.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DebugRender.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsUtils.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\CoreUtils.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\DebugRenderObject.cpp">
+      <Filter>Core\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\D3D11Utils.cpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\OBB3.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Vertex_PCU.cpp">
+      <Filter>Core\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\VertexMaster.cpp">
+      <Filter>Core\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\StdExtensions.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\VertexLit.cpp">
+      <Filter>Core\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\VertexUtils.cpp">
+      <Filter>Core\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\Ray.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RaytracerUtils.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RayHittable.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RayHittableSphere.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RayHittableList.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RaytracerCamera.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RaytracerMaterial.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\LambertianDiffuseMaterial.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\LDM_Metal.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Experimental\Raytracer\RaytracerMaterialDielectrics.cpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\OBJUtils.cpp">
+      <Filter>Core\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Material.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\ShaderState.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\NamedProperties.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\DrawableObjects.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\JobSystem.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\Job.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\Particle2D.cpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleEmitter2D.cpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleSystem2D.cpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleEmitter3D.cpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleSystem3D.cpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\Particle3D.cpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\MikkT\MikktSpace.c">
+      <Filter>ThirdParty\MikkT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\TinyXML2\tinyxml2.cpp">
+      <Filter>ThirdParty\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui.cpp">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_demo.cpp">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_draw.cpp">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_widgets.cpp">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_impl_dx11.cpp">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_impl_dx12.cpp">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_impl_vulkan.cpp">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\imgui_impl_win32.cpp">
+      <Filter>ThirdParty\ImGUI\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugUI\ImGUISystem.cpp">
+      <Filter>DebugUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\NetworkSystem.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\ImGuiFileDialog.cpp">
+      <Filter>ThirdParty\ImGUI\FileDialogBox</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Plane2D.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Frustum.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitives\Plane.cpp">
+      <Filter>Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\TCPClient.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\TCPServer.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\TCPSocket.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\TCPData.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Profilling\D3D11PerformanceMarker.cpp">
+      <Filter>Profilling</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\UDPSocket.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Networking\UDPListner.cpp">
+      <Filter>Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleSystem3DJob.cpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem\ParticleEmitter3DJob.cpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\implot.cpp">
+      <Filter>ThirdParty\ImGUI\Plot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\implot_demo.cpp">
+      <Filter>ThirdParty\ImGUI\Plot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ThirdParty\ImGUI\implot_items.cpp">
+      <Filter>ThirdParty\ImGUI\Plot</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory\JobSystemWorkerThread.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Rgba8.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Camera.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderContext.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\EngineCommon.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyButtonState.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\XboxController.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputSystem.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\AnalogJoystick.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathUtils.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\VirtualKeyboard.hpp">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathConstants.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\AABB2.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Disc2D.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Texture.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Image.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioSystem.hpp">
+      <Filter>Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SpriteSheet.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\SimpleTriangleFont.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SpriteDefinition.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix4x4.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\BitmapFont.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SpriteAnimation.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\NamedStrings.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\EventSystem.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\OBB2.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SpriteAnimeSet.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Tags.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Capsule2D.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\LineSegment2D.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\FloatRange.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntRange.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\IntVec2.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec2.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec3.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vec4.hpp">
+      <Filter>Math\Basic Datatypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\RandomNumberGenerator.hpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\RawNoise.hpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\SmoothNoise.hpp">
+      <Filter>Math\RNG &amp; Noise</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collider2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\DiscCollider2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Physics2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Rigidbody2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DevConsole.hpp">
+      <Filter>Core\Devconsole</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Polygon2D.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PolygonCollider2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Collision2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Manifold2D.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsMaterial.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Window.hpp">
+      <Filter>Physics\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\TextureView.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Shader.hpp">
+      <Filter>Renderer\Pipeline\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RenderBuffer.hpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\VertexBuffer.hpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\FileUtils.hpp">
+      <Filter>Core\Utilities\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StringUtils.hpp">
+      <Filter>Core\Utilities\String</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\XmlUtils.hpp">
+      <Filter>Core\Utilities\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ErrorWarningAssert.hpp">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\SwapChain.hpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Sampler.hpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\D3D11Common.hpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DirectoryWatcher.hpp">
+      <Filter>Core\Experimental</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\ErrorShaderCode.hpp">
+      <Filter>Renderer\Pipeline\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MatrixUtils.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\GPUMesh.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\IndexBuffer.hpp">
+      <Filter>Renderer\Pipeline\Buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\AABB3.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Clock.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Time.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Time\Timer.hpp">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DebugRender.hpp">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsUtils.hpp">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CoreUtils.hpp">
+      <Filter>Core\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\DebugRenderObject.hpp">
+      <Filter>Core\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\D3D11Utils.hpp">
+      <Filter>Renderer\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\OBB3.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Vertex_PCU.hpp">
+      <Filter>Core\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\VertexMaster.hpp">
+      <Filter>Core\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\StdExtensions.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\VertexLit.hpp">
+      <Filter>Core\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\VertexUtils.hpp">
+      <Filter>Core\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Material.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\Ray.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RaytracerUtils.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RayHittable.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RayHittableSphere.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RayHittableList.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RaytracerCamera.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RaytracerMaterial.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\LambertianDiffuseMaterial.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\LDM_Metal.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Experimental\Raytracer\RaytracerMaterialDielectrics.hpp">
+      <Filter>Experimental\Raytracer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Delegate.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\OBJUtils.hpp">
+      <Filter>Core\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\RendererCommon.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\ShaderState.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\NamedProperties.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\DrawableObjects.hpp">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\JobSystem.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\Job.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PromotedWarnings.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory\JobSystemWorkerThread.hpp">
+      <Filter>Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\Particle2D.hpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleEmitter2D.hpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleSystem2D.hpp">
+      <Filter>ParticleSystem\ParticleSystem2D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleEmitter3D.hpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\Particle3D.hpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleSystem3D.hpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\stb\stb_image.h">
+      <Filter>ThirdParty\STB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_output.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod.hpp">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_codec.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_common.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_dsp.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_dsp_effects.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\fmod\fmod_errors.h">
+      <Filter>ThirdParty\FMOD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\MikkT\MikktSpace.h">
+      <Filter>ThirdParty\MikkT</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\TinyXML2\tinyxml2.h">
+      <Filter>ThirdParty\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\TinyOBJLoader\tiny_obj_loader.h">
+      <Filter>ThirdParty\TinyOBJ</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imconfig.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui_internal.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imstb_rectpack.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imstb_textedit.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imstb_truetype.h">
+      <Filter>ThirdParty\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui_impl_dx11.h">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui_impl_dx12.h">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui_impl_vulkan.h">
+      <Filter>ThirdParty\ImGUI\RenderingAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\imgui_impl_win32.h">
+      <Filter>ThirdParty\ImGUI\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUI\ImGUICommon.hpp">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugUI\ImGUISystem.hpp">
+      <Filter>DebugUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\NetworkSystem.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\ImGuiFileDialog.h">
+      <Filter>ThirdParty\ImGUI\FileDialogBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\ImGuiFileDialogConfig.h">
+      <Filter>ThirdParty\ImGUI\FileDialogBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\dirent.h">
+      <Filter>ThirdParty\ImGUI\FileDialogBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Plane2D.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Frustum.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitives\Plane.hpp">
+      <Filter>Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\TCPClient.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\TCPServer.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\NetworkCommon.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\TCPSocket.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\TCPData.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Profilling\D3D11PerformanceMarker.hpp">
+      <Filter>Profilling</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\UDPSocket.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructures\ThreadSafe\BlockingQueue.hpp">
+      <Filter>DataStructures\ThreadSafe</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructures\ThreadSafe\SynchronizedLockFreeQueue.hpp">
+      <Filter>DataStructures\ThreadSafe</Filter>
+    </ClInclude>
+    <ClInclude Include="Networking\UDPListner.hpp">
+      <Filter>Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleSystem3DJob.hpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem\ParticleEmitter3DJob.hpp">
+      <Filter>ParticleSystem\ParticleSystem3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\implot.h">
+      <Filter>ThirdParty\ImGUI\Plot</Filter>
+    </ClInclude>
+    <ClInclude Include="..\ThirdParty\ImGUI\implot_internal.h">
+      <Filter>ThirdParty\ImGUI\Plot</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
