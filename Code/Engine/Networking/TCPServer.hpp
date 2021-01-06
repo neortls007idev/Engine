@@ -13,7 +13,7 @@ public:
 
 	void			Bind();
 	void			Listen();
-	void			ReceiveClientMessage( SOCKET client , char* bufferAddr , int bufferLength );
+	std::string		ReceiveClientMessage( SOCKET client , char* bufferAddr , int bufferLength );
 	void			SendClientMessage( SOCKET client );
 	SOCKET			Accept();
 

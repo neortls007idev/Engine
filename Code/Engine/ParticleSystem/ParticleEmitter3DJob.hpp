@@ -36,36 +36,5 @@ protected:
 	size_t			   m_endIndex = 0;
 };
 
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-class ParticleEmitter3DViewFrustumCullingJob : public Job
-{
-public:
-	ParticleEmitter3DViewFrustumCullingJob( int jobID , ParticleEmitter3D* emitter , size_t startIndex , size_t endIndex );
-	~ParticleEmitter3DViewFrustumCullingJob();
-
-	virtual void Execute() override;
-
-protected:
-	ParticleEmitter3D* m_emitter;
-	size_t			   m_startIndex = 0;
-	size_t			   m_endIndex	= 0;
-};
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-class ParticleEmitter3DViewFrustumCullingSubJob : public Job
-{
-public:
-	ParticleEmitter3DViewFrustumCullingSubJob( int jobID , ParticleEmitter3D* emitter , size_t startIndex , size_t endIndex );
-	~ParticleEmitter3DViewFrustumCullingSubJob();
-
-	virtual void Execute() override;
-
-protected:
-	ParticleEmitter3D* m_emitter;
-	size_t			   m_startIndex = 0;
-	size_t			   m_endIndex	= 0;
-};
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

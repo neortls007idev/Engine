@@ -99,7 +99,6 @@ public:
 	Frustum			GetCameraViewFrustum() /*const*/																{ return m_cameraViewFrustum;  }
 
 	RenderBuffer*	UpdateUBO( RenderContext* ctx );	
-	RenderBuffer*	ForceUpdateUBO( RenderContext* ctx );	
 	Vec3			ClientToWorld( Vec2 client , float ndcZ );
 	Vec3			WorldToClient( Vec3 worldPos );
 

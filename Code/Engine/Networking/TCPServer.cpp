@@ -86,7 +86,7 @@ void TCPServer::Listen()
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void TCPServer::ReceiveClientMessage( SOCKET client , char* bufferAddr , int bufferLength )
+std::string TCPServer::ReceiveClientMessage( SOCKET client , char* bufferAddr , int bufferLength )
 {
 	int iResult = ::recv( client , bufferAddr , static_cast< int >( bufferLength ) , 0 );
 	if( iResult == SOCKET_ERROR )
@@ -95,17 +95,18 @@ void TCPServer::ReceiveClientMessage( SOCKET client , char* bufferAddr , int buf
 
 		if( error == WSAEWOULDBLOCK )
 		{
-			return;
+			return "";
 		}
 		else
 		{
 			//g_theDevConsole->PrintString( DEVCONSOLE_ERROR , "Call to receive failed = %d", WSAGetLastError() );
-			return;
+			return "";
 		}
 	}
 	else if( iResult == 0 )
 	{
 		//g_theDevConsole->PrintString( DEVCONSOLE_WARNING , "Socket CLOSED from Client End received 0 Bytes" );
+		return "";
 	}
 	else
 	{
@@ -126,6 +127,7 @@ void TCPServer::ReceiveClientMessage( SOCKET client , char* bufferAddr , int buf
  		}
 		
 		g_theDevConsole->PrintString( DEVCONSOLE_SYTEMLOG , "Client message: %s" , serverListenMessage.m_message.c_str() );
+		return serverListenMessage.m_message.c_str();
 	}
 }
 

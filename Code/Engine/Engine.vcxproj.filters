@@ -38,6 +38,9 @@
     <Filter Include="Core\Devconsole">
       <UniqueIdentifier>{cf0c3c51-1c20-4171-b436-272996546e5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{0be3e79f-9125-4a7a-b052-d9f48a7a32d1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Core\Utilities">
       <UniqueIdentifier>{a87666d8-eec9-472b-a6bf-fe45b704d8b9}</UniqueIdentifier>
     </Filter>
@@ -127,12 +130,6 @@
     </Filter>
     <Filter Include="DataStructures\ThreadSafe">
       <UniqueIdentifier>{cbb66828-4243-4358-b248-72f7fca08066}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\ImGUI\Plot">
-      <UniqueIdentifier>{a11a00e2-e778-4a82-8e83-80c098ef9117}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics\Platform">
-      <UniqueIdentifier>{0be3e79f-9125-4a7a-b052-d9f48a7a32d1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -275,7 +272,7 @@
       <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="Platform\Window.cpp">
-      <Filter>Physics\Platform</Filter>
+      <Filter>Platform</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\TextureView.cpp">
       <Filter>Renderer</Filter>
@@ -421,6 +418,9 @@
     <ClCompile Include="Memory\Job.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
+    <ClCompile Include="Memory\JobSystemWorkerThread.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
     <ClCompile Include="ParticleSystem\Particle2D.cpp">
       <Filter>ParticleSystem\ParticleSystem2D</Filter>
     </ClCompile>
@@ -513,18 +513,6 @@
     </ClCompile>
     <ClCompile Include="ParticleSystem\ParticleEmitter3DJob.cpp">
       <Filter>ParticleSystem\ParticleSystem3D</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ThirdParty\ImGUI\implot.cpp">
-      <Filter>ThirdParty\ImGUI\Plot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ThirdParty\ImGUI\implot_demo.cpp">
-      <Filter>ThirdParty\ImGUI\Plot</Filter>
-    </ClCompile>
-    <ClCompile Include="..\ThirdParty\ImGUI\implot_items.cpp">
-      <Filter>ThirdParty\ImGUI\Plot</Filter>
-    </ClCompile>
-    <ClCompile Include="Memory\JobSystemWorkerThread.cpp">
-      <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -673,7 +661,7 @@
       <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Window.hpp">
-      <Filter>Physics\Platform</Filter>
+      <Filter>Platform</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\TextureView.hpp">
       <Filter>Renderer</Filter>
@@ -980,12 +968,6 @@
     </ClInclude>
     <ClInclude Include="ParticleSystem\ParticleEmitter3DJob.hpp">
       <Filter>ParticleSystem\ParticleSystem3D</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\ImGUI\implot.h">
-      <Filter>ThirdParty\ImGUI\Plot</Filter>
-    </ClInclude>
-    <ClInclude Include="..\ThirdParty\ImGUI\implot_internal.h">
-      <Filter>ThirdParty\ImGUI\Plot</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

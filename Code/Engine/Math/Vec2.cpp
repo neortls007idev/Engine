@@ -411,7 +411,7 @@ const Vec2 Vec2::GetReflected( const Vec2& normalVector ) const
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-const Vec2 Vec2::SetFromText( const char* text )
+STATIC const Vec2 Vec2::SetFromText( const char* text )
 {
 		Vec2 vec2FromText;
 		vec2FromText.x = static_cast< float >( atof( text ) );

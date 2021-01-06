@@ -75,6 +75,10 @@ public:
 	// needs to vertex shader and vertex format to make the binding
 	//ID3D11InputLayout* GetOrCreateInputLayout( VertexBuffer* vbo );            
 
+// 	ID3D11RasterizerState* GetRasterState()													{ return m_defaultRasterState; }
+// 	ID3D11RasterizerState* SetRasterState( ID3D11RasterizerState* newRasterState );
+	
+	void CreateRasterState();
 	void ReleaseShaderResources();
 	bool RecompileShader( std::string const& filename );
 

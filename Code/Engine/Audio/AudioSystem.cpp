@@ -25,6 +25,9 @@
 #pragma comment( lib, "ThirdParty/fmod/fmod_vc.lib" )
 #endif
 
+//--------------------------------------------------------------------------------------------------------------------------------------------
+	
+AudioSystem* g_theAudioSystem = nullptr;
 
 //-----------------------------------------------------------------------------------------------
 // Initialization code based on example from "FMOD Studio Programmers API for Windows"

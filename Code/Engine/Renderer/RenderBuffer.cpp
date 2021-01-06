@@ -166,7 +166,6 @@ bool RenderBuffer::Create( size_t dataByteSize , size_t elementByteSize )
 	desc.CPUAccessFlags			= 0U;		//	->					What can the CPU do to this memory we are going to infer this form memory hint
 
 	int bufferType = ( int ) desc.Usage;
-	UNUSED( bufferType );
 	
 	if ( m_memHint == MEMORY_HINT_DYNAMIC )
 	{

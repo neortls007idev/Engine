@@ -75,7 +75,7 @@ SOCKET TCPClient::Connect( std::string const& host , std::uint16_t port , Mode m
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void TCPClient::ReceiveServerMessage( SOCKET server , char* bufferAddr , int bufferLength )
+std::string TCPClient::ReceiveServerMessage( SOCKET server , char* bufferAddr , int bufferLength )
 {
 	int iResult = ::recv( server , bufferAddr , static_cast< int >( bufferLength ) , 0 );
 	if( iResult == SOCKET_ERROR )
@@ -85,17 +85,18 @@ void TCPClient::ReceiveServerMessage( SOCKET server , char* bufferAddr , int buf
 		if( error == WSAEWOULDBLOCK )
 		{
 			//g_theDevConsole->PrintString( DEVCONSOLE_ERROR , "Call to receive failed = %d" , WSAGetLastError() );
-			return;
+			return "";
 		}
 		else
 		{
 			//g_theDevConsole->PrintString( DEVCONSOLE_ERROR , "Call to receive failed = %d" , WSAGetLastError() );
-			return;
+			return "";
 		}
 	}
 	else if( iResult == 0 )
 	{
 		//g_theDevConsole->PrintString( DEVCONSOLE_WARNING , "Socket CLOSED from SERVER End received 0 Bytes" );
+		return "";
 	}
 	else
 	{
@@ -116,7 +117,10 @@ void TCPClient::ReceiveServerMessage( SOCKET server , char* bufferAddr , int buf
 		}
 
 		g_theDevConsole->PrintString( DEVCONSOLE_SYTEMLOG , "SERVER message: %s" , clientListenMessage.m_message.c_str() );
+		return  clientListenMessage.m_message.c_str();
 	}
+	
+	return "";
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

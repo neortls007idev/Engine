@@ -195,8 +195,6 @@ void Camera::SetOrthoView3D( const float& halfHeight , const float& aspectRatio 
 
 	m_projection = CreateOrthoGraphicProjeciton( Vec3( bottomLeft , nearZ ) , Vec3( topRight , farZ ) );
 	m_outputSize = ( GetOrthoMax() - GetOrthoMin() ).GetXYComponents();
-
-	ConstructCameraViewFrustum();
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -339,34 +337,6 @@ RenderBuffer* Camera::UpdateUBO( RenderContext* ctx )
 	// Mat44 View  = Invert(cameraModel);
 
 	cameraData.view		= GetViewMatrix();
-	cameraData.position = GetPosition();
-	
-	//m_cameraUBO->m_isDirty = true;
-	m_cameraUBO->Update( &cameraData , sizeof( cameraData ) , sizeof( cameraData ) );
-
-	return m_cameraUBO;
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-RenderBuffer* Camera::ForceUpdateUBO( RenderContext* ctx )
-{
-	if ( m_cameraUBO == nullptr )
-	{
-		m_cameraUBO = new RenderBuffer( ctx , UNIFORM_BUFFER_BIT , MEMORY_HINT_DYNAMIC );
-	}
-
-	//m_cameraUBO->Update()
-
-	CameraDataT cameraData;
-
-	cameraData.cameraToClipTransform = m_projection;
-
-	// CameraToWorld Space Transform
-	// View -> worldToCamera
-	// Mat44 View  = Invert(cameraModel);
-
-	cameraData.view		= m_view;
 	cameraData.position = GetPosition();
 	
 	//m_cameraUBO->m_isDirty = true;

@@ -5,7 +5,7 @@
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 	
-extern		JobSystem*	g_theJobSystem;
+extern JobSystem* g_theJobSystem;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -31,25 +31,21 @@ void ParticleEmitter3DUpdateParticlesJob::Execute()
 	m_emitter->UpdateParticlesData( m_frameTime );
 
 	size_t numParticles = m_emitter->m_numAliveParticles;
-	size_t numWorkerThreads = std::thread::hardware_concurrency() - 1;				// -1 for the main thread;
-	size_t particlesPerJob = static_cast< size_t >( numParticles / numWorkerThreads );
-	size_t leftoverParticles = static_cast< size_t >( numParticles % numWorkerThreads );
 
-	size_t particleEndIndex = particlesPerJob - 1;
+	size_t numJobRange = static_cast< size_t >( numParticles / 6 );
+	size_t numRangeCorrection = static_cast< size_t >( numParticles % 6 );
+
+	size_t jobEndIndex = numJobRange;
 		
-	for ( size_t particleStartIndex = 0; particleEndIndex < ( numParticles - leftoverParticles );  )
+	for( size_t jobStartIndex = 0 ; jobStartIndex < numParticles; jobStartIndex = jobEndIndex + 1 )
 	{
-		ParticleEmitter3DUpdateParticlesVertexBufferJob* vboJob = new ParticleEmitter3DUpdateParticlesVertexBufferJob( 0 , m_emitter , particleStartIndex , particleEndIndex );
+		ParticleEmitter3DUpdateParticlesVertexBufferJob* vboJob = new ParticleEmitter3DUpdateParticlesVertexBufferJob( 0 , m_emitter , jobStartIndex , jobEndIndex );
 		g_theJobSystem->PostJob( *vboJob );
-		particleStartIndex = particleEndIndex + 1;
-		particleEndIndex += particlesPerJob;
+		jobEndIndex += numJobRange;
 	}
-	if( leftoverParticles > 0 )
-	{
-		particleEndIndex -= particlesPerJob;
-		ParticleEmitter3DUpdateParticlesVertexBufferJob* vboJob = new ParticleEmitter3DUpdateParticlesVertexBufferJob( 0 , m_emitter , particleEndIndex + 1 , particleEndIndex + leftoverParticles );
-		g_theJobSystem->PostJob( *vboJob );
-	}
+	
+	//ParticleEmitter3DUpdateParticlesVertexBufferJob* vboJob = new ParticleEmitter3DUpdateParticlesVertexBufferJob( 0 , m_emitter , jobEndIndex + 1 , jobEndIndex + numJobRange  );
+	//g_theJobSystem->PostJob( *vboJob );
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

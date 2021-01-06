@@ -12,6 +12,10 @@
 #include "Engine/Input/VirtualKeyboard.hpp"
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
+	
+DevConsole* g_theDevConsole = nullptr;
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
 extern BitmapFont*	g_bitmapFont;
 extern InputSystem* g_theInput;
@@ -233,11 +237,11 @@ void DevConsole::Render( RenderContext& renderer , const Camera& camera , float 
 	renderer.SetRasterState( FILL_SOLID );
 	renderer.SetModelMatrix( Mat44::IDENTITY );
 
-	AABB2 devConsolePhoenixAnimArea = consoleArea.GetBoxAtTop( 0.75f , 0.f ).GetBoxAtRight( 0.25f , 0.f );
+	AABB2 devConsolePhoenixAnimArea = consoleArea.GetBoxAtTop( 0.75f , 0.f ).GetBoxAtRight( 0.75f , 0.f );
 	devConsolePhoenixAnimArea.AlignWithinAABB2( consoleArea , ALIGN_TOP_RIGHT );
 	RenderPhoenixAnimation( renderer , camera , devConsolePhoenixAnimArea );
 
-	AABB2 devConsoleCatAnimArea = consoleArea.GetBoxAtBottom( 0.75f , 0.f ).GetBoxAtRight( 0.25f , 0.f );
+	AABB2 devConsoleCatAnimArea = consoleArea.GetBoxAtBottom( 0.75f , 0.f ).GetBoxAtRight( 0.75f , 0.f );
 	devConsoleCatAnimArea.AlignWithinAABB2( consoleArea , ALIGN_BOTTOM_RIGHT );
 	RenderCatAnimation( renderer , camera , devConsoleCatAnimArea );
 	
@@ -480,7 +484,7 @@ STATIC void DevConsole::ToggleVisibility()
 	if ( m_isConsoleOpen )
 	{
 		m_originalCursorSettings = g_theInput->GetCursorSettings();
-		g_theInput->PushCursorSettings( CursorSettings( ABSOLUTE_MODE , MOUSE_IS_WINDOWLOCKED , true ) );
+		g_theInput->PushCursorSettings( CursorSettings( ABSOLUTE_MODE , MOUSE_IS_UNLOCKED , true ) );
 	}
 	else
 	{
@@ -685,9 +689,13 @@ bool DevConsole::ResetConsole( EventArgs& commandArgs )
 bool DevConsole::ClearConsoleMessagesOfType( EventArgs& commandArgs , eDevConsoleMessageType messageType )
 {
 	UNUSED( commandArgs );
-	while ( g_theInput->m_characters.size() > 0 )
+
+	if( g_theInput != nullptr )
 	{
-		g_theInput->m_characters.pop();
+		while ( g_theInput->m_characters.size() > 0 )
+		{
+			g_theInput->m_characters.pop();
+		}
 	}
 
 	for ( auto index = m_consoleText.begin(); index < m_consoleText.end(); ++index )

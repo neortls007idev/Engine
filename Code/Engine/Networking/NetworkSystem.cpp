@@ -78,6 +78,11 @@ void NetworkSystem::Startup()
 
 void NetworkSystem::Shutdown()
 {
+	if ( m_UDPListner != nullptr )
+	{
+		SAFE_RELEASE_POINTER( m_UDPListner );
+	}
+
 	int iResult = WSACleanup();
 
 	if( iResult == SOCKET_ERROR )
@@ -106,8 +111,12 @@ void NetworkSystem::BeginFrame()
 			if( m_linkSocket != INVALID_SOCKET )
 			{
 				std::array<char , 256> bufferRecieve;
-				m_TCPServer->ReceiveClientMessage( m_linkSocket , &bufferRecieve[ 0 ] , ( int ) ( bufferRecieve.size() - 1 ) );
-
+				std::string recievedClientMessage = m_TCPServer->ReceiveClientMessage( m_linkSocket , &bufferRecieve[ 0 ] , ( int ) ( bufferRecieve.size() - 1 ) );
+				if( recievedClientMessage != "" )
+				{
+					m_recievedTCPClientMesageBuffer.emplace_back( recievedClientMessage );
+				}
+				
 				if( m_wasMessageJustSentByServer )
 				{
 					//std::array<char , 256> buffer;
@@ -123,7 +132,14 @@ void NetworkSystem::BeginFrame()
 		if( m_TCPclient->m_clientSocket != INVALID_SOCKET )
 		{
 			std::array<char , 256> bufferRecieve;
-			m_TCPclient->ReceiveServerMessage( m_TCPclient->m_clientSocket , &bufferRecieve[ 0 ] , ( int ) ( bufferRecieve.size() - 1 ) );
+			
+			std::string recievedServerMessage = m_TCPclient->ReceiveServerMessage( m_TCPclient->m_clientSocket , &bufferRecieve[ 0 ] , ( int ) ( bufferRecieve.size() - 1 ) );
+			if ( recievedServerMessage != "" )
+			{
+				m_recievedTCPServerMesageBuffer.emplace_back( recievedServerMessage );
+			}
+
+
 			if( m_wasMessageJustSentByClient )
 			{
 				m_TCPclient->SendServerMessage( m_TCPclient->m_clientSocket );
@@ -137,7 +153,9 @@ void NetworkSystem::BeginFrame()
 
 void NetworkSystem::EndFrame()
 {
-
+	m_recievedTCPClientMesageBuffer.clear();
+	m_recievedTCPServerMesageBuffer.clear();
+	m_recievedUDPMesageBuffer.clear();
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -338,8 +356,9 @@ bool NetworkSystem::OpenUDPPort( EventArgs& args )
 		std::string host = args.GetValue( "host" , "127.0.0.1" );
 
 		g_theNetworkSys->StartUDPListner( bindPort , sendToPort , host );
+		return true;
 	}
-	return true;
+	return false;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
