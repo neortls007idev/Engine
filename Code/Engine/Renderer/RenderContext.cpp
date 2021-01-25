@@ -52,8 +52,8 @@
 #pragma comment( lib, "d3dcompiler.lib" )   // needed when we get to shaders
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
-
-		BitmapFont*				g_bitmapFont = nullptr;
+		RenderContext*			g_theRenderer		= nullptr;
+		BitmapFont*				g_bitmapFont		= nullptr;
 extern	char const*				g_errorShaderCode;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
