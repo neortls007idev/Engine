@@ -12,6 +12,8 @@
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
+			  Physics2D* g_thePhysicsSystem = nullptr;
+
 extern		  DevConsole* g_theDevConsole;
 STATIC int	  Physics2D::colliderIds = 0;
 STATIC Clock* Physics2D::s_clock;
