@@ -24,7 +24,7 @@ void* FileReadToNewBuffer( std::string const& filename , size_t* out_size )
 	{
 		fseek( filePath , 0 , SEEK_SET );
 		bytesRead = fread( buffer , 1 , fileSize , filePath );
-		buffer[ bytesRead + 1 ] = NULL;
+		buffer[ bytesRead ] = NULL;
 		UNUSED( bytesRead );
 	}
 
