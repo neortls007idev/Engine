@@ -44,7 +44,7 @@ struct	ID3D11DepthStencilState;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-constexpr uint TOTAL_LIGHTS = 4;
+constexpr uint TOTAL_LIGHTS = 1;
 //float GAMMA = 2.2f;
 //float INVERSE_GAMMA = 1 / GAMMA;
 
@@ -112,10 +112,6 @@ struct lightDataT
 
 	Vec3        specularAttenuation			= Vec3::UNIT_VECTOR_ALONG_K_BASIS;             // attenuation for specular lighting (constant,linear,quadratic), default (0,0,1)
 	float       dotOuterAngle				= -1.0f;                                       // cone light outer angle (default -1.0f) - angle at which cone lights stop affecting the object completely
-	
-	float       shadowFlag					= 1.0f;                                        // 1.0f Enable Shadows for this light 0.0f Disable Shadows for this light.
-	float       shadowBias					= 0.0002f;					                   // Shadow bias for the light
-	Vec2        pad00						= Vec2::ZERO;								   // padding to keep 16-byte structs
 };
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -188,14 +184,7 @@ public:
 	
 	Texture*				GetOrCreatematchingRenderTarget( Texture* texture, std::string debugRenderTargetName = "Unreleased RTV",
 															 D3D_DXGI_FORMAT format = D3D_DXGI_FORMAT_R8G8B8A8_UNORM );
-	Texture*				GetOrCreatematchingRenderTargetOfSize( IntVec2 textureSize, std::string debugRenderTargetName = "Unreleased RTV",
-																   D3D_DXGI_FORMAT format = D3D_DXGI_FORMAT_R8G8B8A8_UNORM );
-	Texture*				CreateUnPooledRenderTargetOfSize( IntVec2 textureSize, std::string debugRenderTargetName = "Unreleased RTV",
-																   D3D_DXGI_FORMAT format = D3D_DXGI_FORMAT_R8G8B8A8_UNORM );
-	Texture*				GetMatchingRenderTarget( Texture* texture );
-	
 	void					ReleaseRenderTarget( Texture* texture );
-	void					ReleaseAndDeleteRenderTarget( Texture* texture );
 	int						GetTotalRenderTargetPoolSize() const				 { return m_renderTargetPoolSize;  }
 	int						GetTexturePoolFreeCount() const						 { return 16 - m_renderTargetPoolSize;  }
 
@@ -263,7 +252,6 @@ public:
 	Shader*					GetOrCreateShader( char const* shaderFilename );
 	ShaderState*			GetOrCreateShaderState( char const* shaderStateFilename );
 	Texture*				GetOrCreateTextureFromFile( const char* imageFilePath );
-	Texture*				GetOrCreateTextureCubeFromFile( const char* imageFilePath );
 	BitmapFont*				GetOrCreateBitmapFontFromFile( std::string bitmapFontFilePath );
 	void					CreateBlendStates();
 	void					CreateRasterStates();
@@ -426,7 +414,6 @@ private:
 	Sampler*		CreateSamplerFromType( eSamplerType type );
 	Shader*			CreateShaderFromFile( char const* shaderFilePath );
 	ShaderState*	CreateShaderStateFromFile( char const* shaderStateFilePath );
-	Texture*		CreateTextureCubeFromFile( const char* imageFilePath );
 	Texture*		CreateTextureFromFile( const char* imageFilePath );
 	Texture*		CreateTextureFromColor( Rgba8 color );
 	Texture*		CreateFromImage( Image* image );												// TODO :- IMPLEMENT ME
@@ -434,6 +421,7 @@ private:
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 public:
+	Texture*		CreateTextureCubeFromFile( const char* imageFilePath );
 	ID3D11Device*								m_device												= nullptr;
 	ID3D11DeviceContext*						m_context												= nullptr;					// Immediate context
 	SwapChain*									m_swapChain												= nullptr;
@@ -475,7 +463,6 @@ private:
 	Texture*									m_flatNormal											= nullptr;
 	
 	std::map<std::string , Texture*>			m_LoadedTextures;									// LOOKUP TABLE OF FILEPATH & TEXTURE
-	std::map<std::string , Texture*>			m_LoadedCubeTextures;									// LOOKUP TABLE OF FILEPATH & CUBE MAP TEXTURES
 	std::vector<Texture*>						m_renderTargetPool;
 	int											m_renderTargetPoolSize = 0;
 

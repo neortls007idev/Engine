@@ -142,7 +142,7 @@ void TransformAndAppendVertsForAABB2( std::vector< Vertex_PCU >& vertexArray , c
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
 void Transform3DAndAppendVertsForAABB2 ( std::vector< Vertex_PCU >& vertexArray , const AABB2& box , const Rgba8& tint ,
-                                         const Vec2& uvAtMins , const Vec2& uvAtMaxs , Mat44& transform )
+                                         const Vec2& uvAtMins , const Vec2& uvAtMaxs , Vec3 position , Mat44 transform )
 {
  	Vertex_PCU boxVerts[ 6 ] = {
  							Vertex_PCU( Vec3( box.m_mins.x,box.m_mins.y,0.f ) , tint, uvAtMins ),
@@ -153,21 +153,21 @@ void Transform3DAndAppendVertsForAABB2 ( std::vector< Vertex_PCU >& vertexArray 
  							Vertex_PCU( Vec3( box.m_maxs.x,box.m_maxs.y,0.f ) , tint, uvAtMaxs ),
  							Vertex_PCU( Vec3( box.m_mins.x,box.m_maxs.y,0.f ) , tint, Vec2( uvAtMins.x, uvAtMaxs.y ) ) };
 
-	Vec4 worldPos;
-
 	for( int index = 0; index < 6; index++ )
 	{
-		worldPos = Vec4( boxVerts[ index ].m_position , 1.f );
-		worldPos = transform.TransformHomogeneousPoint3D( worldPos );
-		boxVerts[ index ].m_position = worldPos.GetXYZ();
+		//boxVerts->m_position = transform.TransformPosition3D( boxVerts->m_position );
+		//boxVerts->m_position += position;
+		boxVerts[ index ].m_position = transform.TransformPosition3D( boxVerts[ index ].m_position );
+		boxVerts[ index ].m_position += position;
 		vertexArray.emplace_back( boxVerts[ index ] );
 	}
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void Transform3DAndAppendVertsForAABB2AtIndex( std::vector<Vertex_PCU>& vertexArray , size_t startIndex , const AABB2& box ,
-												const Rgba8& tint , const Vec2& uvAtMins , const Vec2& uvAtMaxs , Mat44& transform )
+void Transform3DAndAppendVertsForAABB2AtIndex(std::vector<Vertex_PCU>& vertexArray, size_t startIndex, const AABB2& box,
+                                              const Rgba8& tint, const Vec2& uvAtMins, const Vec2& uvAtMaxs,
+                                              Vec3 position, Mat44 transform)
 {
 	Vertex_PCU boxVerts[ 6 ] = {
 							Vertex_PCU( Vec3( box.m_mins.x,box.m_mins.y,0.f ) , tint, uvAtMins ),
@@ -177,12 +177,13 @@ void Transform3DAndAppendVertsForAABB2AtIndex( std::vector<Vertex_PCU>& vertexAr
 							Vertex_PCU( Vec3( box.m_maxs.x,box.m_mins.y,0.f ) , tint, Vec2( uvAtMaxs.x, uvAtMins.y ) ),
 							Vertex_PCU( Vec3( box.m_maxs.x,box.m_maxs.y,0.f ) , tint, uvAtMaxs ),
 							Vertex_PCU( Vec3( box.m_mins.x,box.m_maxs.y,0.f ) , tint, Vec2( uvAtMins.x, uvAtMaxs.y ) ) };
-	Vec4 worldPos;
+
 	for ( int index = 0; index < 6; index++ )
 	{
-		worldPos = Vec4( boxVerts[ index ].m_position , 1.f );
-		worldPos = transform.TransformHomogeneousPoint3D( worldPos );
-		boxVerts[ index ].m_position = worldPos.GetXYZ();		
+		//boxVerts->m_position = transform.TransformPosition3D( boxVerts->m_position );
+		//boxVerts->m_position += position;
+		boxVerts[ index ].m_position = transform.TransformPosition3D( boxVerts[ index ].m_position );
+		boxVerts[ index ].m_position += position;
 		vertexArray[ startIndex + index ] = boxVerts[ index ];
 	}
 }

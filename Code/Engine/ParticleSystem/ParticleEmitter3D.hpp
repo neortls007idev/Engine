@@ -2,13 +2,11 @@
 #include "Engine/Core/Rgba8.hpp"
 #include "Engine/Core/Vertex_PCU.hpp"
 #include "Engine/Math/Vec2.hpp"
-#include "Engine/Primitives/AABB2.hpp"
-#include "Engine/Primitives/Frustum.hpp"
-#include "Engine/Renderer/D3D11Utils.hpp"
 #include "Engine/Renderer/RendererCommon.hpp"
-#include <mutex>
 #include <vector>
-#include <atomic>
+
+#include "Engine/Primitives/AABB2.hpp"
+#include "Engine/Renderer/D3D11Utils.hpp"
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -29,17 +27,18 @@ public:
 	                    Vec3 targetPos , Shader* shader = nullptr , eBlendMode blendMode = ADDITIVE , eCullMode cullMode = CULL_BACK );
 	~ParticleEmitter3D();
 
-	void SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 velocity , uint16_t maxAge , Rgba8 startColor , Rgba8 endColor = CLEAR );
-	void SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 velocity , uint16_t maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords );
-	void SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , float scale  , Vec3 velocity ,
-	                       uint16_t maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords );
+	void SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 target , Vec3 velocity , float age , float maxAge , Rgba8 startColor , Rgba8 endColor = CLEAR );
+	void SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 target , Vec3 velocity , float age , float maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords );
+	void SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position , Vec3 target , float scale  , Vec3 velocity ,
+	                        float age , float maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords );
 
 	void EmplaceBackNewParticle( Particle3D temp );
 
 	//--------------------------------------------------------------------------------------------------------------------------------------------
 
-	void SpawnNewRandomParticleFromSpriteSheet ( AABB2 cosmeticBounds , Vec3 position , float scale , Vec3 velocity ,
-												 uint16_t maxAge , Rgba8 startColor , Rgba8 endColor = CLEAR );
+
+	void SpawnNewRandomParticleFromSpriteSheet ( AABB2 cosmeticBounds , Vec3 position , Vec3 target , float scale ,
+												 Vec3 velocity , float age , float maxAge , Rgba8 startColor , Rgba8 endColor = CLEAR );
 	
 	void Update( float deltaSeconds );
 	void UpdateParticlesData( float deltaSeconds );
@@ -48,16 +47,10 @@ public:
 	void Render();
 	void Destroy();
 	void UpdateTargetPos( Vec3 newTargetPos );
-	void UpdateViewFrustum( Frustum viewFrustum );
-	void FrustumCulling();
-	void SortParticlesBasedOnPosition();
 	void Move( float deltaSeconds );
 	void UpdatePosition( Vec3 newPos );
 	void UpdateVelocity( Vec3 newVelocity );
-
-private:
-	Mat44 ParticleTargetPosFacingxyz( Vec3& particlePos );
-
+	
 public:
 	Texture*						m_texture					= nullptr;
 	SpriteSheet*					m_spriteSheet				= nullptr;
@@ -66,27 +59,20 @@ public:
 	eBlendMode						m_blendMode					= ADDITIVE;
 	eCullMode						m_cullMode					= CULL_BACK;
 	
-	Frustum							m_viewFrustum;
 	Vec3							m_targetPos					= Vec3::ZERO;
-	
+		
 	Vec3							m_position					= Vec3::ZERO;
 	Vec3							m_velocity					= Vec3::ZERO;
 	bool							m_areParticlesBillboarded	= true;
-	std::atomic< size_t >			m_lastSearchPos				= 0;
-	//uint							m_numAliveParticles			= 0;
-	std::atomic< size_t >			m_numAliveParticles			= 0;
-	std::atomic< size_t >			m_particlesInViewFrustum	= 0;
-	size_t							m_totalSpawnableParticles	= 0;
+	size_t							m_lastSpawnPointPos			= 0;
+	uint							m_numAliveParticles			= 0;
+//	std::vector<Particle3D*>		m_particles;
 	std::vector<Vertex_PCU>			m_particleVerts;
+	size_t							m_totalSpawnableParticles		= 0;
 	
 	Particle3D*						m_particles;
-	bool*							m_isParticleGarbage;
-	bool*							m_isParticleInViewFrusutum;
-
-//	std::mutex						m_aliveParticlesCounterLock;
-	//--------------------------------------------------------------------------------------------------------------------------------------------
-
-	//Vec3							m_targetUp					= Vec3::UNIT_VECTOR_ALONG_J_BASIS;
+//	Vertex_PCU*						m_particleVerts;
+	std::atomic<bool>				m_lock;
 };
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

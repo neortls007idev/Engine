@@ -23,7 +23,7 @@ public:
 
 	void BeginFrame();
 	void Update( float deltaSeconds );
-
+	void UpdateClearMode( unsigned int clearFlags , Rgba8 color );
 	// Call Only when the Color Target on the camera is set to backbuffer
 	void Render() const;
 

@@ -45,15 +45,20 @@ public:
 	static bool SendUDPMessage( EventArgs& args );
 	static bool CloseUDPPort( EventArgs& args );
 	
+public:
+	std::vector< std::string >		m_recievedTCPClientMesageBuffer;
+	std::vector< std::string >		m_recievedTCPServerMesageBuffer;
+	std::vector< std::string >		m_recievedUDPMesageBuffer;
+
 private:
-	bool					m_isListening	= false;
-	int						m_listenPort	= -1;
-	TCPServer*				m_TCPServer;
-	TCPClient*				m_TCPclient;
-	SOCKET					m_linkSocket;
-	static bool				m_wasMessageJustSentByServer;
-	static bool				m_wasMessageJustSentByClient;
-	UDPListner*				m_UDPListner	= nullptr;
+	bool							m_isListening						= false;
+	int								m_listenPort						= -1;
+	TCPServer*						m_TCPServer;
+	TCPClient*						m_TCPclient;
+	SOCKET							m_linkSocket;
+	static bool						m_wasMessageJustSentByServer;
+	static bool						m_wasMessageJustSentByClient;
+	UDPListner*						m_UDPListner						= nullptr;
 };
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

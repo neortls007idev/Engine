@@ -2,7 +2,6 @@
 #include "Engine/Platform/Window.hpp"
 #include "Engine/Renderer/RenderContext.hpp"
 #include "Engine/Renderer/SwapChain.hpp"
-#include "ThirdParty/ImGUI/implot.h"
 
 ImGUISystem* g_debugUI = nullptr;
 
@@ -31,7 +30,6 @@ void ImGUISystem::Startup()
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImPlot::CreateContext();
 	//ImGuiIO& io = ImGui::GetIO();
 	ImGui_ImplWin32_Init( m_theWindow->m_hwnd );
 	ImGui_ImplDX11_Init( m_renderContext->m_device , m_renderContext->m_context );
@@ -47,7 +45,6 @@ void ImGUISystem::Shutdown()
 	
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
-	ImPlot::DestroyContext();
 	ImGui::DestroyContext();
 }
 
@@ -71,6 +68,13 @@ void ImGUISystem::BeginFrame()
 void ImGUISystem::Update( float deltaSeconds )
 {
 	UNUSED( deltaSeconds );
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+void ImGUISystem::UpdateClearMode( unsigned int clearFlags , Rgba8 color )
+{
+	m_debugCamera->SetClearMode( clearFlags , color );
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------

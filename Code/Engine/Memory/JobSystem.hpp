@@ -34,7 +34,7 @@ public:
 	void PostJob( Job& newJob );
 	void OnJobCompleted( Job& Job );
 	void ClaimJobForExecution();
-	void MoveJobToProcessingQueue( Job* jobAtFrontOfQueue );
+
 	void ClaimAndDeleteAllCompletedJobs();
 
 	//----------------------------------------------------------------------------------------------------------
@@ -57,8 +57,7 @@ protected:
 	std::mutex								m_processingJobsQueueMutex;
 	std::mutex								m_completedJobsQueueMutex;
 	
-//	std::deque< Job* >						m_processingJobsQueue;
-	std::vector< Job* >						m_processingJobsQueue;
+	std::deque< Job* >						m_processingJobsQueue;
 	std::deque< Job* >						m_completedJobsQueue;
 	std::deque< Job* >						m_pendingJobsQueue;
 

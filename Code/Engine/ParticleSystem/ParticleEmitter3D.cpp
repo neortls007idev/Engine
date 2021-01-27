@@ -6,7 +6,6 @@
 #include "Engine/Renderer/RenderContext.hpp"
 #include "Engine/Renderer/SpriteDefinition.hpp"
 #include "Engine/Renderer/SpriteSheet.hpp"
-#include "Engine/Math/MathUtils.hpp"
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21,13 +20,12 @@ ParticleEmitter3D::ParticleEmitter3D( RenderContext* renderContext , Texture* te
 																														m_cullMode( cullMode )
 {
 	m_spriteSheet = nullptr;
+//	m_particles.reserve( intialArraySize );
 
 	m_totalSpawnableParticles = initialArraySize;
 	m_particles = new Particle3D[ initialArraySize ];
-	m_isParticleGarbage = new bool[ initialArraySize ];
-	memset( &m_isParticleGarbage[ 0 ] , 1 , sizeof( bool ) * initialArraySize );
-	m_isParticleInViewFrusutum = new bool[ initialArraySize ];
-	memset( &m_isParticleInViewFrusutum[ 0 ] , 1 , sizeof( bool ) * initialArraySize );
+	//m_particleVerts = new Vertex_PCU[ initialArraySize * 6 ];
+//	m_particleVerts.resize( 6 * initialArraySize );
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,13 +41,13 @@ ParticleEmitter3D::ParticleEmitter3D ( RenderContext* renderContext , SpriteShee
 																														m_cullMode( cullMode )
 {
 	m_texture = const_cast< Texture* >( &spriteSheet->GetTexture() );
+	//m_texture = const_cast< Texture* >( &( spriteSheet->GetTexture() ) );
+	//m_particles.reserve( intialArraySize );
 
 	m_totalSpawnableParticles = initialArraySize;
 	m_particles = new Particle3D[ initialArraySize ];
-	m_isParticleGarbage = new bool[ initialArraySize ];
-	memset( &m_isParticleGarbage[ 0 ] , 1 , sizeof( bool ) * initialArraySize );
-	m_isParticleInViewFrusutum = new bool[ initialArraySize ];
-	memset( &m_isParticleInViewFrusutum[ 0 ] , 1 , sizeof( bool ) * initialArraySize );
+//	m_particleVerts.resize( 6 * initialArraySize );
+	//m_particleVerts = new Vertex_PCU[ initialArraySize * 6 ];
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -59,12 +57,10 @@ ParticleEmitter3D::~ParticleEmitter3D()
 	delete [] m_particles;
 	m_particles = nullptr;
 
-	delete[] m_isParticleGarbage;
-	m_isParticleGarbage = nullptr;
+	//delete [] m_particleVerts;
+	//m_particleVerts = nullptr;
 	
-	delete[] m_isParticleInViewFrusutum;
-	m_isParticleInViewFrusutum = nullptr;
-
+	//m_particles.clear();
 	m_particleVerts.clear();
 
 	m_texture		= nullptr;
@@ -75,63 +71,67 @@ ParticleEmitter3D::~ParticleEmitter3D()
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void ParticleEmitter3D::SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position , Vec3 velocity , uint16_t maxAge ,
-										   Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords )
+void ParticleEmitter3D::SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position , Vec3 target , Vec3 velocity , float age ,
+                                           float maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords )
 {
 	if ( m_numAliveParticles < m_totalSpawnableParticles )
 	{
 		if ( m_spriteSheet != nullptr )
 		{
-			Particle3D temp( cosmeticBounds , m_position + position , m_velocity + velocity , 0 , maxAge , startColor , endColor );
+			//Particle3D* temp = new Particle3D( cosmeticBounds , m_position + position , m_velocity + velocity , age , maxAge , startColor ,endColor );
+			Particle3D temp( cosmeticBounds , m_position + position , m_velocity + velocity , age , maxAge , startColor , endColor );
 			int		spriteSheetWidth = m_spriteSheet->GetSpriteDimension().x;
 			int		spriteIndex = spriteCoords.x + ( spriteSheetWidth * spriteCoords.y );
 
-
-			temp.m_spriteIndex = spriteIndex;
-			//const SpriteDefinition& currentParticleSprite = m_spriteSheet->GetSpriteDefinition( spriteIndex );
-			//currentParticleSprite.GetUVs( temp.m_minsUVs , temp.m_maxsUVs );
+			const SpriteDefinition& currentParticleSprite = m_spriteSheet->GetSpriteDefinition( spriteIndex );
+			//currentParticleSprite.GetUVs( temp->m_minsUVs , temp->m_maxsUVs );
+			currentParticleSprite.GetUVs( temp.m_minsUVs , temp.m_maxsUVs );
 
 			EmplaceBackNewParticle( temp );
 		}
 		else
 		{
-			//SpawnNewParticle( cosmeticBounds , position , velocity , 0 , maxAge , color );
+			//SpawnNewParticle( cosmeticBounds , position , velocity , age , maxAge , color );
 		}
 	}
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void ParticleEmitter3D::SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 velocity , uint16_t maxAge , Rgba8 startColor , Rgba8 endColor )
+void ParticleEmitter3D::SpawnNewParticle( AABB2 cosmeticBounds , Vec3 position , Vec3 target , Vec3 velocity , float age , float maxAge , Rgba8 startColor , Rgba8 endColor )
 {
 	if( m_numAliveParticles < m_totalSpawnableParticles )
 	{
-		Particle3D temp( cosmeticBounds, m_position + position , m_velocity + velocity , 0 , maxAge , startColor , endColor );
+		Particle3D temp( cosmeticBounds, m_position + position , m_velocity + velocity , age , maxAge , startColor , endColor );
 		EmplaceBackNewParticle( temp );
 	}
+	//EmplaceBackAtEmptySpace( m_particles , temp );
+	//temp->m_cosmeticBounds = cosmeticBounds;
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void ParticleEmitter3D::SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position , float scale , Vec3 velocity ,
-										   uint16_t maxAge , Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords )
+void ParticleEmitter3D::SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position , Vec3 target , float scale ,
+                                           Vec3 velocity , float age , float maxAge ,
+                                           Rgba8 startColor , Rgba8 endColor , IntVec2 spriteCoords )
 {
 	if ( m_numAliveParticles < m_totalSpawnableParticles )
 	{
 		if ( m_spriteSheet != nullptr )
 		{
 			Particle3D temp( cosmeticBounds , m_position + position , scale ,
-				m_velocity + velocity , 0 , maxAge , startColor , endColor );
+				m_velocity + velocity , age , maxAge , startColor , endColor );
 			int		spriteSheetWidth = m_spriteSheet->GetSpriteDimension().x;
 			int		spriteIndex = spriteCoords.x + ( spriteSheetWidth * spriteCoords.y );
 
-			temp.m_spriteIndex = spriteIndex;
+			const SpriteDefinition& currentParticleSprite = m_spriteSheet->GetSpriteDefinition( spriteIndex );
+			currentParticleSprite.GetUVs( temp.m_minsUVs , temp.m_maxsUVs );
 
 			EmplaceBackNewParticle( temp );
 		}
 		else
 		{
-			SpawnNewParticle( cosmeticBounds , position , velocity , maxAge , startColor , endColor );
+			SpawnNewParticle( cosmeticBounds , position , target , velocity , age , maxAge , startColor , endColor );
 			
 		}
 	}
@@ -142,34 +142,23 @@ void ParticleEmitter3D::SpawnNewParticle ( AABB2 cosmeticBounds , Vec3 position 
 void ParticleEmitter3D::EmplaceBackNewParticle( Particle3D temp )
 {
 	if( m_numAliveParticles < m_totalSpawnableParticles )
-	{		
-		for ( size_t index = m_lastSearchPos ;  index < m_totalSpawnableParticles ; index++ )
+	{
+		for ( size_t index = m_lastSpawnPointPos; ( index < m_totalSpawnableParticles ) ; index++ )
 		{
-			if ( m_isParticleGarbage[ index ] )
+			if ( m_particles[ index ].m_isGarbage )
 			{
-				m_isParticleGarbage[ index ] = false;
+				temp.m_isGarbage = false;
 				m_particles[ index ] = temp;
-				//m_aliveParticlesCounterLock.lock();
 				m_numAliveParticles++;
-				//m_aliveParticlesCounterLock.unlock();
-				m_lastSearchPos = index;
+				m_lastSpawnPointPos = index;
 
-				return;
-			}
-		}
-
-		for ( size_t index = 0; index < m_lastSearchPos; index++ )
-		{
-			if ( m_isParticleGarbage[ index ] )
-			{
-				m_isParticleGarbage[ index ] = false;
-				m_particles[ index ] = temp;
-				//m_aliveParticlesCounterLock.lock();
-				m_numAliveParticles++;
-				//m_aliveParticlesCounterLock.unlock();
-				m_lastSearchPos = index;
-
-				return;
+				if ( m_lastSpawnPointPos == ( m_totalSpawnableParticles - 1 ) )
+				{
+					m_lastSpawnPointPos = 0;
+				}
+				
+				break;
+				//m_lastSpawnPointPos++;
 			}
 		}
 	}
@@ -177,13 +166,14 @@ void ParticleEmitter3D::EmplaceBackNewParticle( Particle3D temp )
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
-void ParticleEmitter3D::SpawnNewRandomParticleFromSpriteSheet ( AABB2 cosmeticBounds , Vec3 position , float scale , Vec3 velocity ,
-																uint16_t maxAge , Rgba8 startColor , Rgba8 endColor /*= CLEAR*/ )
+void ParticleEmitter3D::SpawnNewRandomParticleFromSpriteSheet ( AABB2 cosmeticBounds , Vec3 position , Vec3 target ,
+																float scale , Vec3 velocity , float age ,
+                                                                float maxAge , Rgba8 startColor , Rgba8 endColor /*= CLEAR*/ )
 {
 	if ( m_spriteSheet != nullptr )
 	{
 		IntVec2 randSprite = m_spriteSheet->RollRandomSpriteCoordsInSpriteSheet();
-		SpawnNewParticle( cosmeticBounds , m_position + position , scale , m_velocity + velocity , maxAge , startColor , endColor , randSprite );
+		SpawnNewParticle( cosmeticBounds , m_position + position , target , scale , m_velocity + velocity , age , maxAge , startColor , endColor , randSprite );
 	}
 }
 
@@ -192,16 +182,10 @@ void ParticleEmitter3D::SpawnNewRandomParticleFromSpriteSheet ( AABB2 cosmeticBo
 void ParticleEmitter3D::Update( float deltaSeconds )
 {
 	m_particleVerts.clear();
-	m_particlesInViewFrustum = 0;
-
-	if( m_numAliveParticles == 0 )
-	{
-		return;
-	}
 	
-	for( size_t index = 0 ; index < m_totalSpawnableParticles ; index++ )
+	for( size_t index = 0 ; ( index < m_totalSpawnableParticles ) && ( m_numAliveParticles > 0 ); index++ )
 	{
-		if ( m_isParticleGarbage[ index ] )
+		if ( m_particles[ index ].m_isGarbage )
 		{
 			continue;
 		}
@@ -209,37 +193,32 @@ void ParticleEmitter3D::Update( float deltaSeconds )
 
 		if ( m_particles[ index ].m_age >= m_particles[ index ].m_maxAge )
 		{
-			m_isParticleGarbage[ index ] = true;
+			m_particles[ index ].m_isGarbage = true;
 			m_numAliveParticles--;
 		}
 	}
 
 	Mat44 lookAt;
-	Vec2 minUVs = Vec2::ZERO;
-	Vec2 maxUVs = Vec2::ONE;
 	
-	for ( size_t index = 0 ; index < m_totalSpawnableParticles ; index++ )
+	for ( size_t index = 0 ; index < m_totalSpawnableParticles && m_numAliveParticles > 0 ; index++ )
 	{
 		Particle3D* particle = &m_particles[ index ];
 
-		if ( m_isParticleGarbage[ index ] )
+		if( particle->m_isGarbage )
 		{
 			continue;
 		}
 		
-		if ( m_viewFrustum.IsPointInsideFrustum( m_particles[ index ].m_position ) )
-		{
-			m_isParticleInViewFrusutum[ index ] = true;
-			m_particlesInViewFrustum++;
+		lookAt = LookAtMatrix( particle->m_position , m_targetPos );
+		Vec4 ibasis = -lookAt.GetIBasis4D();
+		lookAt.Ix = ibasis.x;
+		lookAt.Iy = ibasis.y;
+		lookAt.Iz = ibasis.z;
+		lookAt.Iw = ibasis.w;
 
-			const SpriteDefinition& currentParticleSprite = m_spriteSheet->GetSpriteDefinition( m_particles[ index ].m_spriteIndex );
-			currentParticleSprite.GetUVs( minUVs , maxUVs );
-			
-			lookAt = ParticleTargetPosFacingxyz( particle->m_position );
-			
-			Transform3DAndAppendVertsForAABB2( m_particleVerts , particle->m_cosmeticBounds , particle->m_startColor ,
-				minUVs , maxUVs , lookAt );
-		}
+		Transform3DAndAppendVertsForAABB2( m_particleVerts , particle->m_cosmeticBounds , particle->m_startColor ,
+				                            particle->m_minsUVs , particle->m_maxsUVs , particle->m_position , lookAt );
+		
 	}
 }
 
@@ -248,11 +227,10 @@ void ParticleEmitter3D::Update( float deltaSeconds )
 void ParticleEmitter3D::UpdateParticlesData( float deltaSeconds )
 {
 	m_particleVerts.clear();
-	m_particlesInViewFrustum = 0;
-
+	
 	for ( size_t index = 0; ( index < m_totalSpawnableParticles ) && ( m_numAliveParticles > 0 ); index++ )
 	{
-		if ( m_isParticleGarbage[ index ] )
+		if ( m_particles[ index ].m_isGarbage )
 		{
 			continue;
 		}
@@ -260,15 +238,8 @@ void ParticleEmitter3D::UpdateParticlesData( float deltaSeconds )
 
 		if ( m_particles[ index ].m_age >= m_particles[ index ].m_maxAge )
 		{
-			m_isParticleGarbage[ index ] = true;
+			m_particles[ index ].m_isGarbage = true;
 			m_numAliveParticles--;
-			continue;
-		}
-		
-		if ( m_viewFrustum.IsPointInsideFrustum( m_particles[ index ].m_position ) )
-		{
-			m_isParticleInViewFrusutum[ index ] = true;
-			m_particlesInViewFrustum++;
 		}
 	}
 
@@ -280,30 +251,26 @@ void ParticleEmitter3D::UpdateParticlesData( float deltaSeconds )
 void ParticleEmitter3D::UpdateParticlesVBO( size_t startIndex , size_t endIndex )
 {
 	Mat44 lookAt;
-	Vec2 minUVs = Vec2::ZERO;
-	Vec2 maxUVs = Vec2::ONE;
-	
+
 	for ( size_t index = startIndex ; index <= endIndex ; index++ )
 	{
 		Particle3D* particle = &m_particles[ index ];
 
-		if ( m_isParticleGarbage[ index ] )
+		if ( particle->m_isGarbage )
 		{
 			continue;
 		}
 
-		if( !m_isParticleInViewFrusutum[ index ] )
-		{
-			continue;
-		}
-
-		const SpriteDefinition& currentParticleSprite = m_spriteSheet->GetSpriteDefinition( m_particles[ index ].m_spriteIndex );
-		currentParticleSprite.GetUVs( minUVs , maxUVs );
-		
-		lookAt = ParticleTargetPosFacingxyz( particle->m_position );
+		lookAt = LookAtMatrix( particle->m_position , m_targetPos );
+		Vec4 ibasis = -lookAt.GetIBasis4D();
+		lookAt.Ix = ibasis.x;
+		lookAt.Iy = ibasis.y;
+		lookAt.Iz = ibasis.z;
+		lookAt.Iw = ibasis.w;
 
 		Transform3DAndAppendVertsForAABB2AtIndex( m_particleVerts , index * 6 , particle->m_cosmeticBounds , particle->m_startColor ,
-			minUVs , maxUVs , lookAt );
+			particle->m_minsUVs , particle->m_maxsUVs , particle->m_position , lookAt );
+
 	}
 }
 
@@ -325,6 +292,7 @@ void ParticleEmitter3D::Render()
 	m_renderContext->BindTexture( m_texture );
 	m_renderContext->SetBlendMode( m_blendMode );	
 	m_renderContext->SetModelMatrix( Mat44::IDENTITY , HALF_ALPHA_WHITE );
+	//m_renderContext->DrawVertexArray( 6 * m_totalSpawnableParticles , &m_particleVerts[ 0 ] );
 	m_renderContext->DrawVertexArray( m_particleVerts );
 	m_renderContext->SetBlendMode( eBlendMode::ALPHA );
 }
@@ -339,6 +307,7 @@ void ParticleEmitter3D::Destroy()
 	m_renderContext			= nullptr;
 
 	delete[] m_particles;
+	//delete[] m_particleVerts;
 	m_particleVerts.clear();
 }
 
@@ -347,44 +316,6 @@ void ParticleEmitter3D::Destroy()
 void ParticleEmitter3D::UpdateTargetPos( Vec3 newTargetPos )
 {
 	m_targetPos = newTargetPos;
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-void ParticleEmitter3D::UpdateViewFrustum( Frustum viewFrustum )
-{
-	m_viewFrustum = viewFrustum;
-}
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-/*void ParticleEmitter3D::FrustumCulling()
-{
-	m_ParticlesInViewFrustum = 0;
-
-	for ( size_t index = 0; index < m_totalSpawnableParticles; index++ )
-	{
-		if ( m_isParticleGarbage[ index ] )
-		{
-			continue;
-		}
-		
-		if ( m_viewFrustum.IsPointInsideFrustum( m_particles[ index ].m_position ) )
-		{
-			m_ParticlesInViewFrustum++;
-
-		}
-	}
-}*/
-
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-void ParticleEmitter3D::SortParticlesBasedOnPosition()
-{
-	for ( size_t index = 0; index < m_totalSpawnableParticles; index++ )
-	{
-		
-	}
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
@@ -409,22 +340,3 @@ void ParticleEmitter3D::UpdateVelocity( Vec3 newVelocity )
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
-
-Mat44 ParticleEmitter3D::ParticleTargetPosFacingxyz( Vec3& particlePos )
-{
-	Vec3 forward = ( m_targetPos - particlePos ).GetNormalized();
-
-	if ( forward.GetLengthSquared() <= 0.001 )
-	{
-		return Mat44::IDENTITY;
-	}
-
-	Vec3 left = CrossProduct3D( forward , Vec3::UNIT_VECTOR_ALONG_J_BASIS ).GetNormalized();
-	Vec3 up = CrossProduct3D( forward , left );
-
-	Mat44 lookAt;
-
-	lookAt.SetBasisVectors3D( left , up , forward , particlePos );
-
-	return lookAt;
-}

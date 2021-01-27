@@ -102,7 +102,7 @@ public:
 	const void Reflect( const Vec2& normalVector );
 	const Vec2 GetReflected( const Vec2& normalVector ) const;
 
-	const Vec2 SetFromText( const char* text );
+	static const Vec2 SetFromText( const char* text );
 };
 
 
