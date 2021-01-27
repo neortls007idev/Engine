@@ -1,8 +1,11 @@
-#include "Engine/ParticleSystem/ParticleSystem2D.hpp"
-
 #include "Engine/Core/StdExtensions.hpp"
 #include "Engine/ParticleSystem/ParticleEmitter2D.hpp"
+#include "Engine/ParticleSystem/ParticleSystem2D.hpp"
 #include "Engine/Renderer/RenderContext.hpp"
+
+//--------------------------------------------------------------------------------------------------------------------------------------------
+
+ParticleSystem2D* g_theParticleSystem2D = nullptr;
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 
